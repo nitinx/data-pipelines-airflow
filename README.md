@@ -24,7 +24,7 @@ The source data resides in S3 and needs to be processed in Sparkify's data wareh
 - Dimension Loads
 	- Dependencies: Completion of Dimension Loads
 	
-[![Representation](https://github.com/nitinx/de-data-pipelines/dag.png)]
+[![Representation](https://github.com/nitinx/de-data-pipelines/blob/master/dag.png)]
 
 - Other Requirements
 	- DAG does not have dependencies on past runs
@@ -53,11 +53,8 @@ This project contains seven files:
 
 ### Run
 
-In a terminal or command window, navigate to the top-level project directory (that contains this README) and run following command:
-
-```bash
-spark-submit etl.py
-```  
+- Start the Airflow web server [`/<home_directory>/airflow/start.sh]
+- Once the Airflow UI is available, start the DAG
 
 ### Data
 Dataset for this project is publicly available on AWS S3: 
