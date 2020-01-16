@@ -10,7 +10,7 @@ from helpers import SqlQueries
 # AWS_SECRET = os.environ.get('AWS_SECRET')
 
 default_args = {
-    'owner': 'udacity',
+    'owner': 'sparkify',
     'start_date': datetime(2018, 11, 1),
     'depends_on_past': False,
     'retries': 3,
@@ -21,7 +21,7 @@ default_args = {
     'catchup': False,
 }
 
-dag = DAG('udac_example_dag',
+dag = DAG('dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
           #schedule_interval='0 * * * *'
@@ -46,7 +46,6 @@ stage_events_to_redshift = StageToRedshiftOperator(
     s3_bucket="udacity-dend",
     provide_context=True,
     s3_key="log_data/{execution_date.year}/{execution_date.month}"
-    #s3_key="log_data",
     region='us-west-2'
 )
 
@@ -122,15 +121,8 @@ load_songplays_table >> load_user_dimension_table
 load_songplays_table >> load_song_dimension_table
 load_songplays_table >> load_artist_dimension_table
 load_songplays_table >> load_time_dimension_table
-load_user_dimension_table >> end_operator
-load_song_dimension_table >> end_operator
-load_artist_dimension_table >> end_operator
-load_time_dimension_table >> end_operator
-
-'''
 load_user_dimension_table >> run_quality_checks
 load_song_dimension_table >> run_quality_checks
 load_artist_dimension_table >> run_quality_checks
 load_time_dimension_table >> run_quality_checks
 run_quality_checks >> end_operator
-'''
