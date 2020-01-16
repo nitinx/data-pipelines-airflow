@@ -23,8 +23,6 @@ The source data resides in S3 and needs to be processed in Sparkify's data wareh
 
 - Dimension Loads
 	- Dependencies: Completion of Dimension Loads
-	
-[![Representation](https://github.com/nitinx/de-data-pipelines/blob/master/dag.png)]
 
 - Other Requirements
 	- DAG does not have dependencies on past runs
@@ -32,6 +30,10 @@ The source data resides in S3 and needs to be processed in Sparkify's data wareh
 	- Retries to happen every 5 minutes
 	- Catchup is to be turned off
 	- Do not email on retry
+
+- Representation	
+![Representation](https://github.com/nitinx/de-data-pipelines/blob/master/dag.png)
+
 
 ### Install
 
